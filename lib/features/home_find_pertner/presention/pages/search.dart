@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_form_tuqaatech/core/widget/magic.dart';
+import 'package:test_form_tuqaatech/features/auth/presentation/bloc/bloc_allcountry/bloc/allcountry_bloc.dart';
 import 'package:test_form_tuqaatech/features/home_find_pertner/presention/bloc/partner/bloc/city_partner_bloc.dart';
 import 'package:test_form_tuqaatech/features/home_find_pertner/presention/widgets/app_bar.dart';
 import 'package:test_form_tuqaatech/features/home_find_pertner/presention/widgets/search_result/card_partner_widget.dart';
-
 import '../../../../core/widget/load.dart';
 import '../../../../core/widget/magicdirection.dart';
-import '../widgets/search/end_widget_insearch.dart';
-import '../widgets/search/second_widget_insearch.dart';
-import '../widgets/search/start_widget_insearch.dart';
+import '../widgets/search/button_widget_insearch.dart';
+import '../widgets/search/select_age_widget_insearch.dart';
+import '../widgets/search/select_city_counry_gender_widget_insearch.dart';
 
 class Search extends StatelessWidget {
   Search({
     Key? key,
   }) : super(key: key);
-    TextEditingController controllergender = TextEditingController();
-    TextEditingController controllercountry = TextEditingController();
-    TextEditingController controllercity = TextEditingController();
-    TextEditingController controllerbettwenage = TextEditingController();
-    TextEditingController controllerandage = TextEditingController();
+  TextEditingController controllergender = TextEditingController();
+  TextEditingController controllercountry = TextEditingController();
+  TextEditingController controllercity = TextEditingController();
+  TextEditingController controllerbettwenage = TextEditingController();
+  TextEditingController controllerandage = TextEditingController();
   @override
   // ignore: avoid_renaming_method_parameters
   Widget build(BuildContext conte) {
-
+       
     return Scaffold(
       appBar: appBar("Find a partner"),
       body: Padding(
@@ -31,23 +31,25 @@ class Search extends StatelessWidget {
           child: BlocConsumer<CityPartnerBloc, CityPartnerState>(
             listener: (context, state) {
               if (state is SuccessedCityPartner) {
-                Navigator.pushNamed(context, 'page2');
+                Scaffold.of(conte).showBottomSheet((context) {
+                  return CardCityPartner();
+                });
               } else if (state is ErrorNetCityPartner) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('عذراً يوجد خطأ ')));
+                      ScaffoldMessenger.of(context).showSnackBar( SnackBar(
+                    content: Text(state.error!)));
               }
             },
             builder: (cont, state) {
               if (state is LoadingCityPartner) {
                 return const LoadingWidget();
               } else {
+         
                 return SearchWidget(
-                        controllercountry: controllercountry,
-                        controllercity: controllercity,
-                        controllergender: controllergender,
-                        controllerbettwenage: controllerbettwenage,
-                        controllerandage: controllerandage)
-                    ;
+                    controllercountry: controllercountry,
+                    controllercity: controllercity,
+                    controllergender: controllergender,
+                    controllerbettwenage: controllerbettwenage,
+                    controllerandage: controllerandage);
               }
             },
           )),
@@ -85,7 +87,12 @@ class SearchWidget extends StatelessWidget {
         SecondWidgetInSearch(
             controllerbettwenage: controllerbettwenage,
             controllerandage: controllerandage),
-        EndWidgetInSearch(controllercity: controllercity,controllercontry: controllercountry,controllermaxage: controllerandage,controllerminage: controllerbettwenage,controllergender: controllergender),
+        EndWidgetInSearch(
+            controllercity: controllercity,
+            controllercontry: controllercountry,
+            controllermaxage: controllerandage,
+            controllerminage: controllerbettwenage,
+            controllergender: controllergender),
       ],
     );
   }

@@ -4,6 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_form_tuqaatech/features/home_find_pertner/domin/usecases/city_partner_usecases.dart';
 import '../../../../../../core/error/error_type.dart';
+import '../../../../../../core/string/error_string.dart';
 import '../../../../data/model/citypartner_model.dart';
 part 'city_partner_event.dart';
 part 'city_partner_state.dart';
@@ -32,8 +33,18 @@ CityPartnerState _eitherDoneMessageOrErrorState(
   ) {
     return either.fold(
         (failure) => ErrorNetCityPartner(
-              "Error NetWork",
+              _mapFailureToMessage(failure),
             ),
         (partner) => SuccessedCityPartner(partner));
+  }
+     String _mapFailureToMessage(ErrorType failure) {
+    switch (failure.runtimeType) {
+      case ServerFailure:
+        return SERVER_FAILURE_MESSAGE;
+      case OfflineError:
+        return OFFLINE_FAILURE_MESSAGE;
+      default:
+        return "Unexpected Error , Please try again later .";
+    }
   }
 }

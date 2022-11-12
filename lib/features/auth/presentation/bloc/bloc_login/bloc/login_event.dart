@@ -11,4 +11,5 @@ class Loginevent extends LoginEvent {
   LoginEntity entity;
   Loginevent({required this.entity});
 }
+
 class SignOutEvent extends LoginEvent {}

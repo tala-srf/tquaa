@@ -34,8 +34,8 @@ class RegisterUI extends StatelessWidget {
                     Navigator.of(context).popAndPushNamed("/done");
                   
                   } else if (state is ErrorNet) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('عذراً يوجد خطأ ')));
+                         ScaffoldMessenger.of(context).showSnackBar( SnackBar(
+                    content: Text(state.error!)));
                   }
                 },
                 builder: (context, state) {

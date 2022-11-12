@@ -1,6 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+
+import 'package:page_animation_transition/animations/scale_animation_transition.dart';
+import 'package:page_animation_transition/page_animation_transition.dart';
 import 'package:test_form_tuqaatech/features/welcome/presentation/pages/selection_signup_login.dart';
 
 class Welcome extends StatefulWidget {
@@ -16,12 +19,16 @@ class _WelcomeState extends State<Welcome> {
   @override
   void initState() {
     Timer(const Duration(seconds: 3), () {
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (context) => const SelectionSignupOrLogin()));
+      Navigator.of(context).push(PageAnimationTransition(
+          page: const SelectionSignupOrLogin(),
+          pageAnimationType: ScaleAnimationTransition(),));
     });
     super.initState();
+  }
+    @override
+  void dispose() {
+    timer.cancel();
+    super.dispose();
   }
 
   @override

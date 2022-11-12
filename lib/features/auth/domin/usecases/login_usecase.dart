@@ -8,7 +8,7 @@ import '../repository/register_repository.dart';
 class LoginUsecase {
   final RegisterRepository repository;
 
-  LoginUsecase(this.repository);
+  LoginUsecase(this.repository,);
   Future<Either<ErrorType, TokenEntity>> call(LoginEntity loginEntity) async {
     return await repository.auth(loginEntity);
   }

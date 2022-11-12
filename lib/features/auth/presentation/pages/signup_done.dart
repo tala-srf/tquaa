@@ -7,7 +7,7 @@ class SignupDone extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  
+
     return StartClass(
       num: 0.2,
       widgetstart: Center(

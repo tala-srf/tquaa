@@ -4,6 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../../core/error/error_type.dart';
+import '../../../../../../core/string/error_string.dart';
 import '../../../../data/model/chat_model.dart';
 import '../../../../domin/usecases/chat_usecases.dart';
 
@@ -34,8 +35,18 @@ ChatListState _eitherDoneMessageOrErrorState(
   ) {
     return either.fold(
         (failure) => ErrorNetChatList(
-              "Error NetWork",
+              _mapFailureToMessage(failure),
             ),
         (chat) => SuccessedChatList(chat));
+  }
+     String _mapFailureToMessage(ErrorType failure) {
+    switch (failure.runtimeType) {
+      case ServerFailure:
+        return SERVER_FAILURE_MESSAGE;
+      case OfflineError:
+        return OFFLINE_FAILURE_MESSAGE;
+      default:
+        return "Unexpected Error , Please try again later .";
+    }
   }
 }

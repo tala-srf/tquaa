@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_form_tuqaatech/core/page/scaffold_start.dart';
+import 'package:test_form_tuqaatech/core/string/error_string.dart';
 import 'package:test_form_tuqaatech/features/home_find_pertner/presention/pages/home.dart';
 import '../../../../core/widget/load.dart';
 import '../bloc/bloc_login/bloc/login_bloc.dart';
@@ -29,15 +30,19 @@ class LoginUI extends StatelessWidget {
                   builder: (context) => Home(),
                 ));
               } else if (state is ErrorNetLogin) {
+                 ScaffoldMessenger.of(context).showSnackBar( SnackBar(
+                    content: Text(state.error!)));
+
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                    content: Text('تأكد من الايميل وكلمة السر')));
+                    content: Text(validEmail)));
               }
             },
             builder: (context, state) {
               if (state is LoginInitial || state is ErrorNetLogin) {
                 return FormLoginWidget(
                     controlleremail: controlleremail,
-                    controllerpass: controllerpass);
+                    controllerpass: controllerpass,
+                    );
               } else if (state is LoadingLogin) {
                 return const LoadingWidget();
               } else {

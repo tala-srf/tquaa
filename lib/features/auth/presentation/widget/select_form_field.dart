@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-
+import '../../../../core/string/const.dart';
 import '../../../../core/widget/select_form_field.dart';
-
 
 // ignore: must_be_immutable
 class SelectFormFieldWidget extends StatefulWidget {
@@ -22,14 +21,15 @@ class SelectFormFieldWidget extends StatefulWidget {
 }
 
 class _SelectFormFieldWidgetState extends State<SelectFormFieldWidget> {
-    @override
-void initState() {
-  super.initState();
+  @override
+  void initState() {
+    super.initState();
 
- widget.controller.addListener(() {
-    setState(() {});
-  });
-}
+    widget.controller.addListener(() {
+      setState(() {});
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -38,12 +38,18 @@ void initState() {
         padding: const EdgeInsets.only(top: 16),
         child: Row(
           children: [
-            SelextFormField1(controller: widget.controller,name: widget.name,item: widget.item),
-           SizedBox(
-              width: 20,
-              child: widget.controller.text.isNotEmpty
-                  ? const Icon(Icons.check,color: Color(0xffff6f00), )
-                  : const Text(""))
+            SelextFormField1(
+                controller: widget.controller,
+                name: widget.name,
+                item: widget.item),
+            SizedBox(
+                width: 20,
+                child: widget.controller.text.isNotEmpty
+                    ? const Icon(
+                        Icons.check,
+                        color: Color(0xffff6f00),
+                      )
+                    : const Text(""))
           ],
         ),
       ),

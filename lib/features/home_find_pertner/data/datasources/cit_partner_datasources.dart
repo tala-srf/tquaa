@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:test_form_tuqaatech/features/home_find_pertner/data/model/citypartner_model.dart';
 
 import '../../../../core/conf_api/conf.dart';
+import '../../../../core/error/exception.dart';
 
 abstract class CitypartnerDatasources {
   Future<CityPartnerModel> citypartner(int cityid, int countryid, String token,int gender,int minAge ,int maxage , String date);
@@ -25,7 +26,7 @@ class CitypartnerDatasourcesImp implements CitypartnerDatasources {
       CityPartnerModel returnpartner = CityPartnerModel.fromJson(citypartner);
       return returnpartner;
     } else {
-      throw UnimplementedError();
+      throw ServerException();
     }
   }
 }

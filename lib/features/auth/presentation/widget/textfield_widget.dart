@@ -30,6 +30,12 @@ void initState() {
   });
 }
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+
+  @override
   Widget build(BuildContext context) {
 
     return SizedBox(

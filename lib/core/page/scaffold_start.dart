@@ -15,8 +15,6 @@ class StartClass extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // bottomNavigationBar: widgetbottom,
-      //resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: Container(
         decoration: BoxDecoration(

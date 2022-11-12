@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_form_tuqaatech/features/home_find_pertner/domin/entity/citypartner_entity.dart';
-
-import 'package:test_form_tuqaatech/features/home_find_pertner/presention/widgets/search_result/card_partner_widget.dart';
 
 import '../../../../../core/widget/elevated_button.dart';
 import '../../bloc/partner/bloc/city_partner_bloc.dart';

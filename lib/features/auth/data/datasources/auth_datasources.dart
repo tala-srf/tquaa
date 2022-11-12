@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:test_form_tuqaatech/core/error/exception.dart';
 import 'package:test_form_tuqaatech/features/auth/data/model/login_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:test_form_tuqaatech/features/auth/data/model/token_model.dart';
@@ -26,7 +27,7 @@ class AuthDataSourcesImp implements AuthDataSources {
       TokenModel returnlogin = TokenModel.fromJson(login);
       return returnlogin;
     } else {
-      throw UnimplementedError();
+      throw ServerException();
     }
     
   }

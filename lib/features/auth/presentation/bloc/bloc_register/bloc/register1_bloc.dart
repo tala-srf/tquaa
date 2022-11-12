@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../../../../core/error/error_type.dart';
+import '../../../../../../core/string/error_string.dart';
 import '../../../../domin/entites/register_entity.dart';
 import '../../../../domin/entites/true_register.dart';
 import '../../../../domin/usecases/register_usecase.dart';
@@ -23,20 +24,20 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       Either<ErrorType, TrueRegister> either, ) {
     return either.fold(
       (failure) => ErrorNet(
-        error:"Error NetWork",
+        error:_mapFailureToMessage(failure),
       ),
       (_) => SuccessedRegister(true1: TrueRegister(true)),
     );
   }
 
-  // String _mapFailureToMessage(ErrorType failure) {
-  //   switch (failure.runtimeType) {
-  //     case ServerFailure:
-  //       return SERVER_FAILURE_MESSAGE;
-  //     case OfflineFailure:
-  //       return OFFLINE_FAILURE_MESSAGE;
-  //     default:
-  //       return "Unexpected Error , Please try again later .";
-  //   }
-  // }
+   String _mapFailureToMessage(ErrorType failure) {
+    switch (failure.runtimeType) {
+      case ServerFailure:
+        return SERVER_FAILURE_MESSAGE;
+      case OfflineError:
+        return OFFLINE_FAILURE_MESSAGE;
+      default:
+        return "Unexpected Error , Please try again later .";
+    }
+  }
 }

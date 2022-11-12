@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:test_form_tuqaatech/features/auth/presentation/pages/signup_done.dart';
+import 'package:test_form_tuqaatech/features/chat/presention/pages/chat.dart';
+import 'package:test_form_tuqaatech/features/chat/presention/pages/page_chat.dart';
 import 'package:test_form_tuqaatech/features/home_find_pertner/presention/pages/home.dart';
+import 'package:test_form_tuqaatech/features/home_find_pertner/presention/pages/search.dart';
 import 'package:test_form_tuqaatech/features/welcome/presentation/pages/selection_signup_login.dart';
 
 
@@ -14,7 +17,8 @@ Map<String, WidgetBuilder> routes() {
   '/register': (ctxt) =>  RegisterUI(),
    '/login': (ctxt) =>  LoginUI(),
     '/done': (ctxt) =>  const SignupDone(),
-    //  '/partnerresult': (ctxt) =>  const CardCityPartner(),
-     '/home': (ctxt) =>   Home()};
+  '/chat': (ctxt) =>  const Chat(),
+    '/search': (ctxt) =>   Search(),
+     '/home': (ctxt) => const  Home()};
    
 }

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:test_form_tuqaatech/core/error/exception.dart';
 import 'package:test_form_tuqaatech/features/auth/data/model/regidter.dart';
 import 'package:http/http.dart' as http;
 
@@ -26,7 +27,7 @@ class RegisterDataSourcesImp implements RegisterDataSources {
       RegisterModel returnregister = RegisterModel.fromJson(register);
       return returnregister;
     } else {
-      throw UnimplementedError();
+      throw ServerException();
     }
   }
 }

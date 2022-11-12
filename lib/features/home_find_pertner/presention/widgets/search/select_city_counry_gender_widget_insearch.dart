@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:test_form_tuqaatech/core/string/const.dart';
 
 import '../../../../../core/widget/select_form_field.dart';
 import '../../../../auth/presentation/widget/list_selecet.dart';
 
-class FirstWidgetInSearch extends StatelessWidget {
-  const FirstWidgetInSearch({
+
+
+class FirstWidgetInSearch extends StatefulWidget {
+  FirstWidgetInSearch({
     super.key,
     required this.controllercountry,
     required this.controllercity,
@@ -16,6 +19,15 @@ class FirstWidgetInSearch extends StatelessWidget {
   final TextEditingController controllergender;
 
   @override
+  State<FirstWidgetInSearch> createState() => _FirstWidgetInSearchState();
+}
+
+class _FirstWidgetInSearchState extends State<FirstWidgetInSearch> {
+  @override
+
+  
+
+  @override
   Widget build(BuildContext context) {
     return Expanded(
       flex: 4,
@@ -24,15 +36,17 @@ class FirstWidgetInSearch extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           SelextFormField1(
-              controller: controllercountry,
+              controller: widget.controllercountry,
               name: "Country",
-              item: items1[1]),
+              item: allcountry.isEmpty ? empty : allcountry),
           SelextFormField1(
-              controller: controllercity, name: "City", item: items1[2]),
+              controller: widget.controllercity,
+              name: "City",
+              item: allcity.isEmpty ? empty : allcity),
           SelextFormField1(
-            controller: controllergender,
+            controller: widget.controllergender,
             name: "partner's gender",
-            item: items1[0],
+            item: gendermap,
           ),
           Text(
             "partner's age :",
