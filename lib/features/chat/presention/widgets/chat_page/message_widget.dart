@@ -23,6 +23,9 @@ class _MessageWidgetState extends State<MessageWidget> {
   @override
   void initState() {
     cashmessage();
+    Timer(const Duration(seconds: 3), () {
+   const Center(child:   CircularProgressIndicator());
+    });
     super.initState();
     timer = Timer.periodic(const Duration(seconds: 2), (Timer t) async {
       cashmessage();
@@ -49,7 +52,7 @@ class _MessageWidgetState extends State<MessageWidget> {
     if (cashdialog == null) {
       return Container();
     } else {
-     lenghtchat = cashdialog!.result!.dialogs!.length;
+      lenghtchat = cashdialog!.result!.dialogs!.length;
       cashdialog!.result!.dialogs!.sort((a, b) => (a.id!).compareTo(b.id!));
       return Container(
         child: Expanded(

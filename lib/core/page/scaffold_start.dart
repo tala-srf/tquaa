@@ -9,7 +9,6 @@ class StartClass extends StatelessWidget {
     Key? key,
     required this.widgetstart,
     required this.num,
-    // required this.widgetbottom
   }) : super(key: key);
 
   @override
