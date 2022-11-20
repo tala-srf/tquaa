@@ -1,7 +1,7 @@
 import 'package:test_form_tuqaatech/features/auth/domin/entites/token.dart';
 
 // ignore: must_be_immutable
-class TokenModel extends TokenEntity {
+class TokenModel  {
   Result? result;
   String? targetUrl;
   bool? success;
@@ -16,11 +16,7 @@ class TokenModel extends TokenEntity {
       this.error,
       this.unAuthorizedRequest,
       this.bAbp})
-      : super(
-            accessToken: result!.accessToken,
-            encryptedAccessToken: result.encryptedAccessToken,
-            expireInSeconds: result.expireInSeconds,
-            userId: result.userId);
+      ;
 
   TokenModel.fromJson(Map<String, dynamic> json) {
     result =

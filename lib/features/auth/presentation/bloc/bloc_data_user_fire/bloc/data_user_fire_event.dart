@@ -7,4 +7,7 @@ abstract class DataUserFireEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class Fireevent extends DataUserFireEvent {}
+class Fireevent extends DataUserFireEvent {
+  String? firebase;
+  Fireevent({required this.firebase});
+}

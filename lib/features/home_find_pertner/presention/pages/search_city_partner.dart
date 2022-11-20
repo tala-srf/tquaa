@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_form_tuqaatech/core/widget/magic.dart';
-import 'package:test_form_tuqaatech/features/auth/presentation/bloc/bloc_allcountry/bloc/allcountry_bloc.dart';
 import 'package:test_form_tuqaatech/features/home_find_pertner/presention/bloc/partner/bloc/city_partner_bloc.dart';
 import 'package:test_form_tuqaatech/features/home_find_pertner/presention/widgets/app_bar.dart';
 import 'package:test_form_tuqaatech/features/home_find_pertner/presention/widgets/search_result/card_partner_widget.dart';
-import '../../../../core/widget/load.dart';
+import '../../../../core/widget/loading_widget.dart';
 import '../../../../core/widget/magicdirection.dart';
 import '../widgets/search/button_widget_insearch.dart';
 import '../widgets/search/select_age_widget_insearch.dart';
 import '../widgets/search/select_city_counry_gender_widget_insearch.dart';
 
-class Search extends StatelessWidget {
-  Search({
+class SearchPartner extends StatelessWidget {
+  SearchPartner({
     Key? key,
   }) : super(key: key);
   TextEditingController controllergender = TextEditingController();
@@ -80,19 +79,28 @@ class SearchWidget extends StatelessWidget {
           ? MagicDirection.vertical
           : MagicDirection.horizental,
       [
-        FirstWidgetInSearch(
-            controllercountry: controllercountry,
-            controllercity: controllercity,
-            controllergender: controllergender),
-        SecondWidgetInSearch(
-            controllerbettwenage: controllerbettwenage,
-            controllerandage: controllerandage),
-        EndWidgetInSearch(
-            controllercity: controllercity,
-            controllercontry: controllercountry,
-            controllermaxage: controllerandage,
-            controllerminage: controllerbettwenage,
-            controllergender: controllergender),
+        Expanded(
+          flex: 4,
+          child: SelectCityCountryAndGenderWidgetInSearch(
+              controllercountry: controllercountry,
+              controllercity: controllercity,
+              controllergender: controllergender),
+        ),
+        Expanded(
+          flex: 3,
+          child: SelectAgeWidgetInSearch(
+              controllerbettwenage: controllerbettwenage,
+              controllerandage: controllerandage),
+        ),
+        Expanded(
+          flex: 3,
+          child: BottonWidgetInSearch(
+              controllercity: controllercity,
+              controllercontry: controllercountry,
+              controllermaxage: controllerandage,
+              controllerminage: controllerbettwenage,
+              controllergender: controllergender),
+        ),
       ],
     );
   }

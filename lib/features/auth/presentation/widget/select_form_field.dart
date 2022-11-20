@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../../../../core/string/const.dart';
 import '../../../../core/widget/select_form_field.dart';
-
+import 'package:responsive_sizer/responsive_sizer.dart';
 // ignore: must_be_immutable
 class SelectFormFieldWidget extends StatefulWidget {
   final String name;
@@ -38,12 +36,12 @@ class _SelectFormFieldWidgetState extends State<SelectFormFieldWidget> {
         padding: const EdgeInsets.only(top: 16),
         child: Row(
           children: [
-            SelextFormField1(
+            SelectFormFieldWidgetCore(
                 controller: widget.controller,
                 name: widget.name,
                 item: widget.item),
             SizedBox(
-                width: 20,
+                width: 7.3.w,
                 child: widget.controller.text.isNotEmpty
                     ? const Icon(
                         Icons.check,

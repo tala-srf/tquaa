@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_form_tuqaatech/core/string/image_manger.dart';
 import 'package:test_form_tuqaatech/features/chat/presention/bloc/bloc_dialog_chat/bloc/get_dialog_by_chat_id_bloc.dart';
 import 'package:test_form_tuqaatech/features/chat/presention/pages/page_chat.dart';
 import '../../bloc/bloc_image/bloc/image_bloc.dart';
 import '../cash_message.dart';
 
-
+import 'package:responsive_sizer/responsive_sizer.dart';
 class ListTileWidgetChat extends StatelessWidget {
   const ListTileWidgetChat(
       {super.key,
@@ -39,8 +40,8 @@ class ListTileWidgetChat extends StatelessWidget {
             ],
           ),
           leading: Container(
-            width: 60,
-            height: 60,
+            width: 14.w,
+            height: 11.h,
             decoration: BoxDecoration(
               shape: BoxShape.rectangle,
               borderRadius: BorderRadius.circular(10),
@@ -49,7 +50,7 @@ class ListTileWidgetChat extends StatelessWidget {
             child: Stack(
               alignment: Alignment.center,
               children: [
-                Image.asset("asset/icons/image.png"),
+                Image.asset(AppImageManger.pathIconImage),
                 UrlImage(idsender: idsender),
               ],
             ),
@@ -91,7 +92,7 @@ class UrlImage extends StatelessWidget {
         if (state is SuccessedImage) {
           return Image.network(state.urlimage!);
         } else {
-          return Image.asset("asset/icons/image.png");
+          return Image.asset(AppImageManger.pathIconImage);
         }
       },
     );

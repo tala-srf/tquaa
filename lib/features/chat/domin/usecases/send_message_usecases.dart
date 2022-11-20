@@ -8,8 +8,9 @@ import '../repository/chat_repositry.dart';
 class SendMessageUsecase {
   final ChatRepditry chatRepditry;
 
-  SendMessageUsecase(this.chatRepditry);
-  Future<Either<ErrorType, ReturnSendMessageModel>> call(String tonken,SendMessageEntity sendMessageEntity) async {
-    return await chatRepditry.sendmessage(tonken, sendMessageEntity);
+  SendMessageUsecase({required this.chatRepditry});
+  Future<Either<ErrorType, ReturnSendMessageModel>> call(
+      SendMessageEntity sendMessageEntity) async {
+    return await chatRepditry.sendmessage(sendMessageEntity);
   }
 }

@@ -8,7 +8,7 @@ import '../repository/register_repository.dart';
 class RegisterUsecase {
   final RegisterRepository repository;
 
-  RegisterUsecase(this.repository);
+  RegisterUsecase({required this.repository});
   Future<Either<ErrorType, TrueRegister>> call(RegisterEntity register1) async {
     return await repository.register(register1);
   }

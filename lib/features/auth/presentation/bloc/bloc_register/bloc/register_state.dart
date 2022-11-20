@@ -1,4 +1,4 @@
-part of 'register1_bloc.dart';
+part of 'register_bloc.dart';
 
 abstract class RegisterState extends Equatable {
   const RegisterState();

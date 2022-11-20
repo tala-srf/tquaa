@@ -12,7 +12,8 @@ part 'allcountry_state.dart';
 
 class AllcountryBloc extends Bloc<AllcountryEvent, AllcountryState> {
   final AllCountryUsecase allCountryUsecase;
-  AllcountryBloc(this.allCountryUsecase) : super(AllcountryInitial()) {
+  AllcountryBloc({required this.allCountryUsecase})
+      : super(AllcountryInitial()) {
     on<CountryEvent>((event, emit) async {
       emit(LoadingAllcountry());
       final succ = await allCountryUsecase();

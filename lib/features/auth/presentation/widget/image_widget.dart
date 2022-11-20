@@ -3,9 +3,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:test_form_tuqaatech/core/string/image_manger.dart';
 
 import '../../../../core/string/const.dart';
-
+import 'package:responsive_sizer/responsive_sizer.dart';
 class ImageWidget extends StatefulWidget {
   const ImageWidget({Key? key}) : super(key: key);
 
@@ -26,8 +27,8 @@ class _ImageWidgetState extends State<ImageWidget> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            width: 70,
-            height: 70,
+            width: 15.w,
+            height: 9.h,
             decoration: BoxDecoration(
               shape: BoxShape.rectangle,
               borderRadius: BorderRadius.circular(10),
@@ -35,13 +36,13 @@ class _ImageWidgetState extends State<ImageWidget> {
             ),
             child: (image != null)
                 ? Image.file(image!)
-                : Image.asset("asset/icons/image.png"),
+                : Image.asset(AppImageManger.pathIconImage),
           ),
           Padding(
             padding: const EdgeInsets.all(20),
             child: Container(
-              width: 30,
-              height: 30,
+              width: 9.w,
+              height:4.h ,
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.black, width: 1),
               ),

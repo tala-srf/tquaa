@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:test_form_tuqaatech/core/page/scaffold_start.dart';
+import 'package:test_form_tuqaatech/features/auth/presentation/pages/scaffold_start.dart';
+import 'package:test_form_tuqaatech/router/routes.dart';
 import '../../../../core/widget/elevated_button.dart';
 
 class SignupDone extends StatelessWidget {
@@ -8,7 +9,7 @@ class SignupDone extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return StartClass(
+    return ScaffoldStart(
       num: 0.2,
       widgetstart: Center(
         child: Column(
@@ -20,7 +21,7 @@ class SignupDone extends StatelessWidget {
             TextDone(signIn: "to countinue to the app",bold: FontWeight.normal,),
             Padding(
               padding: const EdgeInsets.all(18.0),
-              child: ButtonWidget(name: "Done",newVariable: "",onPressed: () =>  Navigator.popAndPushNamed(context,"/login"), ),
+              child: ButtonWidget(name: "Done",newVariable: "",onPressed: () =>  Navigator.popAndPushNamed(context,RouteNamedScreens.loginScreenNameRoute), ),
             )
           ],
         ),

@@ -1,7 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-
+import 'package:responsive_sizer/responsive_sizer.dart';
 class TextFieldWidgetSearch extends StatelessWidget {
   TextInputType? keyboardType;
   String? name;
@@ -13,8 +13,7 @@ class TextFieldWidgetSearch extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
 
-      width:  MediaQuery.of(context).size.height / MediaQuery.of(context).size.width >
-                1? MediaQuery.of(context).size.width *0.3 :MediaQuery.of(context).size.width *0.14,
+      width:  30.w,
       child: Padding(
         padding: const EdgeInsets.only(top: 8.0),
         child: TextFormField(

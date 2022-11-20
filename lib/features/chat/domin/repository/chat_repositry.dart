@@ -7,11 +7,11 @@ import '../../data/model/return_send_message.dart';
 import '../entity/send_message.dart';
 
 abstract class ChatRepditry {
-  Future<Either<ErrorType, ChatModel>> getAlllistchat(String token);
+  Future<Either<ErrorType, ChatModel>> getAlllistchat();
   Future<Either<ErrorType, GetDialogByChatIdModel>> getdialogbychat(
-      String token, String id);
+       String id);
   Future<Either<ErrorType, ReturnSendMessageModel>> sendmessage(
-      String token, SendMessageEntity sendMessageEntity);
+     SendMessageEntity sendMessageEntity);
         Future<Either<ErrorType, String>> image(
       int id);
 }

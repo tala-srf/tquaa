@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:test_form_tuqaatech/core/string/image_manger.dart';
 import 'package:test_form_tuqaatech/features/home_find_pertner/presention/widgets/app_bar.dart';
 
 
 
-class Home1 extends StatelessWidget {
-  const Home1({Key? key}) : super(key: key);
+class HomeWelcome extends StatelessWidget {
+  const HomeWelcome({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class Home1 extends StatelessWidget {
       
       
       body: Container(
-      decoration: const BoxDecoration(image: DecorationImage(image: AssetImage("asset/images/welcome.png")),)
+      decoration:  BoxDecoration(image: DecorationImage(image: AssetImage(AppImageManger.pathImageWelcome)),)
       ),
     );
   }

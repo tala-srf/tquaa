@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../bloc/bloc_dialog_chat/bloc/get_dialog_by_chat_id_bloc.dart';
@@ -17,15 +18,23 @@ class MessageWidget extends StatefulWidget {
 
 class _MessageWidgetState extends State<MessageWidget> {
   int? lenghtchat;
-
+  int count = 0;
   Timer? timer;
-
+  Timer? timer1;
+  getMessage() {
+    FirebaseMessaging.onMessage.listen((message) {
+         print("...........................");
+      print(message.notification!.body);
+         print("...........................");
+         
+    });
+  }
   @override
   void initState() {
+    
     cashmessage();
-    Timer(const Duration(seconds: 3), () {
-   const Center(child:   CircularProgressIndicator());
-    });
+    timer1 = Timer.periodic(
+        const Duration(seconds: 2), (_) => setState(() => count += 1));
     super.initState();
     timer = Timer.periodic(const Duration(seconds: 2), (Timer t) async {
       cashmessage();
@@ -35,20 +44,33 @@ class _MessageWidgetState extends State<MessageWidget> {
   }
 
   void checkForNewSharedLists() {
-    BlocProvider.of<GetDialogByChatIdBloc>(context)
-        .add(ChatByidEvnet(widget.usermessage!));
-
+    getMessage();
+    context.read<GetDialogByChatIdBloc>().add(ChatByidEvnet(widget.usermessage!));
     setState(() {});
+  }
+
+  Widget _renderWidget() {
+    return count == 0 ? _renderWidget1() : _renderWidget2();
   }
 
   @override
   void dispose() {
     timer?.cancel();
     super.dispose();
+    timer1?.cancel();
   }
 
   @override
   Widget build(BuildContext context) {
+    return _renderWidget();
+  }
+
+  Widget _renderWidget1() {
+    return Container(
+        alignment: Alignment.center, child: const CircularProgressIndicator());
+  }
+
+  Widget _renderWidget2() {
     if (cashdialog == null) {
       return Container();
     } else {

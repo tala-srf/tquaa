@@ -12,32 +12,34 @@ part 'image_state.dart';
 
 class ImageBloc extends Bloc<ImageEvent, ImageState> {
   final ImageUsecase imageUsecase;
-  ImageBloc(this.imageUsecase) : super(ImageInitial()) {
+  ImageBloc({required this.imageUsecase}) : super(ImageInitial()) {
     on<UrlImageEvent>((event, emit) async {
       emit(LoadingImage());
-         final succ = await imageUsecase( event.id);
-      emit( _eitherDoneMessageOrErrorState(succ, ));
+      final succ = await imageUsecase(event.id);
+      emit(_eitherDoneMessageOrErrorState(
+        succ,
+      ));
     });
   }
-   ImageState _eitherDoneMessageOrErrorState(
-      Either<ErrorType, String> either,
-      ) {
+  ImageState _eitherDoneMessageOrErrorState(
+    Either<ErrorType, String> either,
+  ) {
     return either.fold(
         (failure) => ErrorNetImage(
               _mapFailureToMessage(failure),
             ), (image) {
-    
       return SuccessedImage(image);
     });
   }
-     String _mapFailureToMessage(ErrorType failure) {
+
+  String _mapFailureToMessage(ErrorType failure) {
     switch (failure.runtimeType) {
       case ServerFailure:
-        return SERVER_FAILURE_MESSAGE;
+        return AppErrorMessage.SERVER_FAILURE_MESSAGE;
       case OfflineError:
-        return OFFLINE_FAILURE_MESSAGE;
+        return AppErrorMessage.OFFLINE_FAILURE_MESSAGE;
       default:
-        return "Unexpected Error , Please try again later .";
+        return AppErrorMessage.errorExaption;
     }
   }
 }

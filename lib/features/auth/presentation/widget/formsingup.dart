@@ -2,19 +2,21 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_form_tuqaatech/core/string/error_string.dart';
+import 'package:test_form_tuqaatech/core/string/image_manger.dart';
 import 'package:test_form_tuqaatech/features/auth/presentation/widget/accept.dart';
 
 import 'package:test_form_tuqaatech/features/auth/presentation/widget/select_form_field.dart';
 import 'package:test_form_tuqaatech/features/auth/presentation/widget/textfield_widget.dart';
+import 'package:test_form_tuqaatech/router/routes.dart';
 
 import '../../../../core/string/const.dart';
 import '../../../../core/widget/elevated_button.dart';
 import '../../domin/entites/register_entity.dart';
-import '../bloc/bloc_register/bloc/register1_bloc.dart';
+import '../bloc/bloc_register/bloc/register_bloc.dart';
 import 'bottom_widget.dart';
-
+import 'package:responsive_sizer/responsive_sizer.dart';
 import 'image_widget.dart';
-import 'list_selecet.dart';
+import 'list_selecet_gender.dart';
 
 class FormSignup extends StatefulWidget {
   const FormSignup({
@@ -54,20 +56,20 @@ class _FormSignupState extends State<FormSignup> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Text(
+             Text(
               "Signup",
-              style: TextStyle(fontSize: 22),
+              style: TextStyle(fontSize: 0.32.dp),
             ),
             const ImageWidget(),
             TextFieldWidget(
                 keyboard: TextInputType.text,
                 name: "Name",
-                icon: "asset/icons/point.png",
+                icon: AppImageManger.pathIconPoint,
                 controller: widget.controllername),
             TextFieldWidget(
                 keyboard: TextInputType.number,
                 name: "Age",
-                icon: "asset/icons/point.png",
+                icon: AppImageManger.pathIconPoint,
                 controller: widget.controllerage),
             SelectFormFieldWidget(
               name: "Gender",
@@ -86,22 +88,22 @@ class _FormSignupState extends State<FormSignup> {
             TextFieldWidget(
                 keyboard: TextInputType.phone,
                 name: "Phone number",
-                icon: "asset/icons/point.png",
+                icon: AppImageManger.pathIconPoint,
                 controller: widget.controllerphone),
             TextFieldWidget(
                 keyboard: TextInputType.emailAddress,
                 name: "Email",
-                icon: "asset/icons/email.png",
+                icon: AppImageManger.pathIconEmail,
                 controller: widget.controllernemail),
             TextFieldWidget(
                 keyboard: TextInputType.text,
                 name: "Password",
-                icon: "asset/icons/key.png",
+                icon: AppImageManger.pathIconKey,
                 controller: widget.controllerpassword),
             TextFieldWidget(
                 keyboard: TextInputType.text,
                 name: "Reenter password",
-                icon: "asset/icons/key.png",
+                icon: AppImageManger.pathIconKey,
                 controller: widget.controllerreenterpassword),
             Accept(
               name: "Accept the",
@@ -117,7 +119,7 @@ class _FormSignupState extends State<FormSignup> {
                 padding: const EdgeInsets.only(top: 10),
                 child: BottomWidget(
                     bottom: "Already have an account ?",
-                    onPressed: () => Navigator.pushNamed(context, "/login"),
+                    onPressed: () => Navigator.pushNamed(context, RouteNamedScreens.loginScreenNameRoute),
                     textbutton: "Login")),
           ]),
     );
@@ -146,23 +148,23 @@ class _FormSignupState extends State<FormSignup> {
 
     if (gender1 == 0 || citt1 == 0 || contry1 == 0) {
       ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text(allFieldsRequired)));
+           SnackBar(content: Text(AppErrorMessage.allFieldsRequired)));
     }
     if (t == false) {
       ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text(passwordnotMatch)));
+           SnackBar(content: Text(AppErrorMessage.passwordnotMatch)));
     }
     if (length < 6) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text(errorPasswordCharacters)));
+      ScaffoldMessenger.of(context).showSnackBar( SnackBar(
+          content: Text(AppErrorMessage.errorPasswordCharacters)));
     }
     if (base64Image == "") {
       ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text(addImage)));
+          .showSnackBar( SnackBar(content: Text(AppErrorMessage.addImage)));
     }
     if (email == false) {
       ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text(validEmail)));
+           SnackBar(content: Text(AppErrorMessage.validEmail)));
     }
     if (isValid &&
         t &&

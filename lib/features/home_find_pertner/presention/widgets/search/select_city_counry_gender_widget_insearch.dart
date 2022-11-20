@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:test_form_tuqaatech/core/string/const.dart';
 
 import '../../../../../core/widget/select_form_field.dart';
-import '../../../../auth/presentation/widget/list_selecet.dart';
+import '../../../../auth/presentation/widget/list_selecet_gender.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 
-
-class FirstWidgetInSearch extends StatefulWidget {
-  FirstWidgetInSearch({
+class SelectCityCountryAndGenderWidgetInSearch extends StatelessWidget {
+  SelectCityCountryAndGenderWidgetInSearch({
     super.key,
     required this.controllercountry,
     required this.controllercity,
@@ -19,43 +19,35 @@ class FirstWidgetInSearch extends StatefulWidget {
   final TextEditingController controllergender;
 
   @override
-  State<FirstWidgetInSearch> createState() => _FirstWidgetInSearchState();
-}
-
-class _FirstWidgetInSearchState extends State<FirstWidgetInSearch> {
-  @override
 
   
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      flex: 4,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          SelextFormField1(
-              controller: widget.controllercountry,
-              name: "Country",
-              item: allcountry.isEmpty ? empty : allcountry),
-          SelextFormField1(
-              controller: widget.controllercity,
-              name: "City",
-              item: allcity.isEmpty ? empty : allcity),
-          SelextFormField1(
-            controller: widget.controllergender,
-            name: "partner's gender",
-            item: gendermap,
-          ),
-          Text(
-            "partner's age :",
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: MediaQuery.of(context).size.height * 0.03),
-          ),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        SelectFormFieldWidgetCore(
+            controller: controllercountry,
+            name: "Country",
+            item: allcountry.isEmpty ? empty : allcountry),
+        SelectFormFieldWidgetCore(
+            controller: controllercity,
+            name: "City",
+            item: allcity.isEmpty ? empty : allcity),
+        SelectFormFieldWidgetCore(
+          controller: controllergender,
+          name: "partner's gender",
+          item: gendermap,
+        ),
+        Text(
+          "partner's age :",
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 0.35.dp),
+        ),
+      ],
     );
   }
 }

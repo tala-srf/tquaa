@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_form_tuqaatech/features/chat/presention/pages/page_chat.dart';
-import 'package:test_form_tuqaatech/features/home_find_pertner/presention/widgets/search_result/card_partner_widget.dart';
-import '../../../chat/presention/bloc/bloc_dialog_chat/bloc/get_dialog_by_chat_id_bloc.dart';
-import '../../../chat/presention/pages/chat.dart';
-import 'home1.dart';
-import 'search.dart';
+import '../../../auth/presentation/bloc/bloc_data_user_fire/bloc/data_user_fire_bloc.dart';
+import '../../../chat/presention/pages/list_all_chats.dart';
+import 'home_start_page.dart';
+import 'search_city_partner.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 class Home extends StatefulWidget {
@@ -21,15 +20,22 @@ class _HomeState extends State<Home> {
 
   getMessage() {
     FirebaseMessaging.onMessage.listen((message) {
+         print("...........................");
       print(message.notification!.body);
+         print("...........................");
+         
     });
   }
 
   @override
   void initState() {
     fbm.getToken().then((token) {
+      print("...........................");
       print(token);
+       print("...........................");
+          BlocProvider.of<DataUserFireBloc>(context).add(Fireevent(firebase: token));
     });
+     
     getMessage();
     super.initState();
   }
@@ -82,11 +88,11 @@ class _HomeState extends State<Home> {
         destinations: destinations2,
       ),
       body: <Widget>[
-        Home1(),
-        Search(),
+        HomeWelcome(),
+        SearchPartner(),
         Navigator(
           onGenerateRoute: (settings) {
-            Widget page1 = Chat();
+            Widget page1 = ListAllChatsUser();
             if (settings.name == '/c') {
               page1 = PageChat();
             }

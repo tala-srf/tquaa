@@ -35,14 +35,12 @@ class _AcceptState extends State<Accept> {
                 Text(
                   widget.name,
                   style: const TextStyle(color: Colors.black
-                      // fontSize: MediaQuery.of(context).size.width * 0.02,
                       ),
                 ),
                 Text(
                   widget.line,
                   style: const TextStyle(
-                      color: Colors.black,
-                      // fontSize: MediaQuery.of(context).size.width * 0.02,
+                      color: Colors.black,               
                       decoration: TextDecoration.underline),
                 ),
               ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 // ignore: must_be_immutable
 class BottomWidget extends StatelessWidget {
@@ -12,8 +13,8 @@ class BottomWidget extends StatelessWidget {
     return Column(children: [
       Container(
         color: Colors.black,
-        height: 2,
-        width: MediaQuery.of(context).size.width * 0.8,
+        height: 0.3.h,
+        width: 90.w,
       ),
       Row(
         crossAxisAlignment: CrossAxisAlignment.center,

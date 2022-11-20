@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:responsive_sizer/responsive_sizer.dart';
 // ignore: must_be_immutable
 class TextFieldWidget extends StatefulWidget {
   String name;
@@ -80,7 +80,7 @@ void initState() {
             ),
           ),
           SizedBox(
-              width: 20,
+              width: 7.3.w,
               child: widget.controller.text.isNotEmpty
                   ? const Icon(Icons.check,color: Color(0xffff6f00), )
                   : const Text(""))

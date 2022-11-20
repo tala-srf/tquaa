@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class DataPartnerInCard extends StatelessWidget {
   String age;
@@ -15,15 +16,15 @@ class DataPartnerInCard extends StatelessWidget {
       children: [
         Text(
           partnername,
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+          style:  TextStyle(fontWeight: FontWeight.bold, fontSize: 0.3.dp),
         ),
         Text(
           "Age : $age",
-          style: const TextStyle(fontSize: 15),
+          style:  TextStyle(fontSize: 0.28.dp),
         ),
-        const Text(
+         Text(
           "Restaurant name : Name",
-          style: TextStyle(fontSize: 15),
+          style: TextStyle(fontSize: 0.28.dp),
         )
       ],
     );

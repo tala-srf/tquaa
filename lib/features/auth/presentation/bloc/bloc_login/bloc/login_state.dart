@@ -17,7 +17,7 @@ class ErrorNetLogin extends LoginState {
 }
 
 class SuccessedLogin extends LoginState {
-  TokenEntity user;
+  TokenModel user;
   SuccessedLogin(this.user);
 }
 class ProcessingLogOutState extends LoginState {}

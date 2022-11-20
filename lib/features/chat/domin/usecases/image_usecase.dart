@@ -6,7 +6,7 @@ import '../repository/chat_repositry.dart';
 class ImageUsecase {
   final ChatRepditry chatRepditry;
 
-  ImageUsecase(this.chatRepditry);
+  ImageUsecase({required this.chatRepditry});
   Future<Either<ErrorType, String>> call(int id) async {
     return await chatRepditry.image(id);
   }

@@ -1,4 +1,3 @@
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_form_tuqaatech/core/network/internet_checker.dart';
 import 'package:test_form_tuqaatech/features/auth/data/datasources/all_country_datasource.dart';
 import 'package:test_form_tuqaatech/features/auth/data/datasources/auth_datasources.dart';
@@ -13,7 +12,7 @@ import 'package:test_form_tuqaatech/features/auth/domin/entites/login_entity.dar
 import 'package:test_form_tuqaatech/features/auth/domin/entites/register_entity.dart';
 import 'package:test_form_tuqaatech/core/error/error_type.dart';
 import 'package:dartz/dartz.dart';
-import 'package:test_form_tuqaatech/features/auth/domin/entites/token.dart';
+
 import 'package:test_form_tuqaatech/features/auth/domin/entites/true_register.dart';
 import 'package:test_form_tuqaatech/features/auth/domin/repository/register_repository.dart';
 
@@ -23,8 +22,12 @@ class RegisterRepositeryImp implements RegisterRepository {
   final AuthDataSources authDataSources;
   final AllCountryDataSources allCountryDataSources;
   final DataUserFireDataSources dataUserFireDataSources;
-  RegisterRepositeryImp(this.internet, this.registerDataSources,
-      this.authDataSources, this.allCountryDataSources, this.dataUserFireDataSources);
+  RegisterRepositeryImp(
+      {required this.internet,
+      required this.registerDataSources,
+    required  this.authDataSources,
+     required this.allCountryDataSources,
+      required this.dataUserFireDataSources});
 
   @override
   Future<Either<ErrorType, TrueRegister>> register(
@@ -54,7 +57,7 @@ class RegisterRepositeryImp implements RegisterRepository {
   }
 
   @override
-  Future<Either<ErrorType, TokenEntity>> auth(LoginEntity loginEntity) async {
+  Future<Either<ErrorType, TokenModel>> auth(LoginEntity loginEntity) async {
     final LoginModel loginModel = LoginModel(
       password: loginEntity.password,
       rememberClient: loginEntity.rememberClient,
@@ -64,13 +67,6 @@ class RegisterRepositeryImp implements RegisterRepository {
     if (await internet.isConnected) {
       try {
         TokenModel token = await authDataSources.auth(loginModel);
-        SharedPreferences sharedPreferences =
-            await SharedPreferences.getInstance();
-        sharedPreferences.setString(
-            "backend_token", token.result!.accessToken ?? 'EMPTY_TOKEN');
-        sharedPreferences.setString("encryptedAccessToken",
-            token.result!.encryptedAccessToken ?? 'EMPTY_TOKEN');
-
         return Right(token);
       } catch (e) {
         return Left(ServerFailure());
@@ -97,14 +93,10 @@ class RegisterRepositeryImp implements RegisterRepository {
 
   @override
   Future<Either<ErrorType, DataUserFireBaceModel>> datauserFire(
-      String token) async {
+      String? firebasetoken) async {
     if (await internet.isConnected) {
       try {
-        SharedPreferences sharedPreferences =
-            await SharedPreferences.getInstance();
-        String token1 =
-            sharedPreferences.getString('backend_token') ?? 'EMPTY_TOKEN';
-        final data = await dataUserFireDataSources.dataUserFire(token1);
+        final data = await dataUserFireDataSources.dataUserFire(firebasetoken);
         return Right(data);
       } catch (e) {
         return Left(ServerFailure());

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_form_tuqaatech/core/page/scaffold_start.dart';
+import 'package:test_form_tuqaatech/features/auth/presentation/pages/scaffold_start.dart';
 import 'package:test_form_tuqaatech/core/string/error_string.dart';
 import 'package:test_form_tuqaatech/features/home_find_pertner/presention/pages/home.dart';
-import '../../../../core/widget/load.dart';
+import 'package:test_form_tuqaatech/router/routes.dart';
+import '../../../../core/widget/loading_widget.dart';
 import '../bloc/bloc_login/bloc/login_bloc.dart';
 import '../widget/form_login.dart';
 
@@ -15,7 +16,7 @@ class LoginUI extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StartClass(
+    return ScaffoldStart(
       num: 0.2,
       widgetstart: Padding(
           padding: const EdgeInsets.all(25),
@@ -24,7 +25,7 @@ class LoginUI extends StatelessWidget {
               if (state is SuccessedLogin) {
                 Navigator.popUntil(
                   context,
-                  ModalRoute.withName('/home'),
+                  ModalRoute.withName(RouteNamedScreens.homeNameRoute),
                 );
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => Home(),
@@ -33,8 +34,8 @@ class LoginUI extends StatelessWidget {
                  ScaffoldMessenger.of(context).showSnackBar( SnackBar(
                     content: Text(state.error!)));
 
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                    content: Text(validEmail)));
+                ScaffoldMessenger.of(context).showSnackBar( SnackBar(
+                    content: Text(AppErrorMessage.validEmail)));
               }
             },
             builder: (context, state) {
@@ -46,7 +47,7 @@ class LoginUI extends StatelessWidget {
               } else if (state is LoadingLogin) {
                 return const LoadingWidget();
               } else {
-                return const Text("data");
+                return const Text("");
               }
             },
           )),

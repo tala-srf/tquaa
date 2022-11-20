@@ -1,4 +1,3 @@
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:test_form_tuqaatech/core/error/error_type.dart';
 import 'package:dartz/dartz.dart';
@@ -17,17 +16,13 @@ class ChatRepositoryImp implements ChatRepditry {
   // final MessageLocalDataSource messageLocalDataSource;
 
   ChatRepositoryImp(
-      this.internet, this.chatDatasources,);
+     {required this.internet,required this.chatDatasources});
 
   @override
-  Future<Either<ErrorType, ChatModel>> getAlllistchat(String token) async {
+  Future<Either<ErrorType, ChatModel>> getAlllistchat() async {
     if (await internet.isConnected) {
       try {
-        SharedPreferences sharedPreferences =
-            await SharedPreferences.getInstance();
-        String token1 =
-            sharedPreferences.getString('backend_token') ?? 'EMPTY_TOKEN';
-        final chat = await chatDatasources.chat(token1);
+        final chat = await chatDatasources.chat();
         return Right(chat);
       } catch (e) {
         return Left(ServerFailure());
@@ -39,15 +34,11 @@ class ChatRepositoryImp implements ChatRepditry {
 
   @override
   Future<Either<ErrorType, GetDialogByChatIdModel>> getdialogbychat(
-      String token, String id) async {
+     String id) async {
     if (await internet.isConnected) {
       try {
-        SharedPreferences sharedPreferences =
-            await SharedPreferences.getInstance();
-        String token1 =
-            sharedPreferences.getString('backend_token') ?? 'EMPTY_TOKEN';
-        final dialogchat = await chatDatasources.getdialogbychat(token1, id);
-        // messageLocalDataSource.cachemessage(dialogchat);
+        
+        final dialogchat = await chatDatasources.getdialogbychat( id);
         return Right(dialogchat);
       } catch (e) {
         return Left(ServerFailure());
@@ -59,7 +50,7 @@ class ChatRepositoryImp implements ChatRepditry {
 
   @override
   Future<Either<ErrorType, ReturnSendMessageModel>> sendmessage(
-      String token, SendMessageEntity sendMessageEntity) async {
+       SendMessageEntity sendMessageEntity) async {
     final SendMessageModel sendMessage = SendMessageModel(
         message: sendMessageEntity.message,
         recipientID: sendMessageEntity.recipientID,
@@ -68,11 +59,8 @@ class ChatRepositoryImp implements ChatRepditry {
 
     if (await internet.isConnected) {
       try {
-        SharedPreferences sharedPreferences =
-            await SharedPreferences.getInstance();
-        String token1 =
-            sharedPreferences.getString('backend_token') ?? 'EMPTY_TOKEN';
-        final sendMess = await chatDatasources.sendmessage(token1, sendMessage);
+
+        final sendMess = await chatDatasources.sendmessage( sendMessage);
         return Right(sendMess);
       } catch (e) {
         return Left(ServerFailure());

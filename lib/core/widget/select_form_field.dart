@@ -7,12 +7,12 @@ String valuecountry = "";
 
 List<Map<String, dynamic>> citySel = [];
 
-class SelextFormField1 extends StatefulWidget {
+class SelectFormFieldWidgetCore extends StatefulWidget {
   TextEditingController controller;
   List<Map<String, dynamic>> item;
 
   final String name;
-  SelextFormField1({
+  SelectFormFieldWidgetCore({
     Key? key,
     required this.controller,
     required this.item,
@@ -20,10 +20,10 @@ class SelextFormField1 extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<SelextFormField1> createState() => _SelextFormField1State();
+  State<SelectFormFieldWidgetCore> createState() => _SelectFormFieldWidgetCoreState();
 }
 
-class _SelextFormField1State extends State<SelextFormField1> {
+class _SelectFormFieldWidgetCoreState extends State<SelectFormFieldWidgetCore> {
   @override
   void initState() {
     super.initState();

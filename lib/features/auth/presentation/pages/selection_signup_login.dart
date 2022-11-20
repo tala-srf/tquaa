@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:test_form_tuqaatech/router/routes.dart';
 
 
-import '../../../../core/page/scaffold_start.dart';
-
+import 'scaffold_start.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 class SelectionSignupOrLogin extends StatelessWidget {
   const SelectionSignupOrLogin({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return StartClass(
+    return ScaffoldStart(
      
   num: 1.0,
       widgetstart: Column(
@@ -18,19 +19,19 @@ class SelectionSignupOrLogin extends StatelessWidget {
             Text(
               "Please login to continue",
               style: TextStyle(
-                  fontSize: MediaQuery.of(context).size.height * 0.029),
+                  fontSize: 0.33.dp),
             ),
             _WidgetLoginorsignup(
               "Login",
               const Color(0xffff6f00),
               Colors.white,
-              () => Navigator.pushNamed(context, "/login"),
+              () => Navigator.pushNamed(context, RouteNamedScreens.loginScreenNameRoute),
             ),
             _WidgetLoginorsignup(
                 "SignUp",
                 Colors.white,
                 const Color(0xffff6f00),
-                () => Navigator.pushNamed(context, "/register"))
+                () => Navigator.pushNamed(context, RouteNamedScreens.regiserNameRoute))
           ]),
     );
   }
@@ -56,7 +57,7 @@ class SelectionSignupOrLogin extends StatelessWidget {
         child: Center(
             child: Text(
           name,
-          style: const TextStyle(fontSize: 20),
+          style:  TextStyle(fontSize: 0.28.dp),
         )),
       ),
     );

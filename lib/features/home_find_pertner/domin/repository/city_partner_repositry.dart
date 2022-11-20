@@ -4,5 +4,5 @@ import 'package:test_form_tuqaatech/features/home_find_pertner/data/model/citypa
 
 abstract class CityPartnerRepditry {
   Future<Either<ErrorType, CityPartnerModel>> getAllcitypartner(int cityid ,
-int countryid ,String token,int gender,int minAge ,int maxage , String date);
+int countryid ,int gender,int minAge ,int maxage , String date);
 }

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:test_form_tuqaatech/core/string/image_manger.dart';
 
-class StartClass extends StatelessWidget {
+class ScaffoldStart extends StatelessWidget {
   final Widget widgetstart;
   // Widget widgetbottom;
   final double num;
 
-   const StartClass({
+   const ScaffoldStart({
     Key? key,
     required this.widgetstart,
     required this.num,
@@ -20,8 +21,8 @@ class StartClass extends StatelessWidget {
             image: DecorationImage(
                 colorFilter: ColorFilter.mode(
                     Colors.white.withOpacity(num), BlendMode.dstATop),
-                image: const AssetImage(
-                  "asset/images/start.png",
+                image:  AssetImage(
+                 AppImageManger.pathImagestart,
                 ),
                 fit: BoxFit.cover)),
         child: widgetstart,

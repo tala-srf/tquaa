@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:responsive_sizer/responsive_sizer.dart';
 // ignore: must_be_immutable
 class ButtonWidget extends StatelessWidget {
   void Function()? onPressed;
@@ -12,7 +12,7 @@ class ButtonWidget extends StatelessWidget {
     // ignore: sized_box_for_whitespace
    
     return Container(
-      width: 350,
+      width: 83.w,
       height: double.tryParse(newVariable),
       child: ElevatedButton(
         style: ButtonStyle(

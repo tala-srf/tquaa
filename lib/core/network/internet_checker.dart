@@ -7,7 +7,7 @@ abstract class InternetChecker {
 class InternetCheckerImpl implements InternetChecker {
   final InternetConnectionChecker connectionChecker;
 
-  InternetCheckerImpl(this.connectionChecker);
+  InternetCheckerImpl({required this.connectionChecker});
   @override
   Future<bool> get isConnected => connectionChecker.hasConnection;
 }

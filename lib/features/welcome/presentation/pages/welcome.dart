@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 
 import 'package:page_animation_transition/animations/scale_animation_transition.dart';
 import 'package:page_animation_transition/page_animation_transition.dart';
-import 'package:test_form_tuqaatech/features/welcome/presentation/pages/selection_signup_login.dart';
+import 'package:test_form_tuqaatech/core/string/image_manger.dart';
+import 'package:test_form_tuqaatech/features/auth/presentation/pages/selection_signup_login.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class Welcome extends StatefulWidget {
   const Welcome({Key? key}) : super(key: key);
@@ -14,20 +16,19 @@ class Welcome extends StatefulWidget {
 }
 
 class _WelcomeState extends State<Welcome> {
-  late Timer timer;
-
   @override
   void initState() {
     Timer(const Duration(seconds: 3), () {
       Navigator.of(context).push(PageAnimationTransition(
-          page: const SelectionSignupOrLogin(),
-          pageAnimationType: ScaleAnimationTransition(),));
+        page: const SelectionSignupOrLogin(),
+        pageAnimationType: ScaleAnimationTransition(),
+      ));
     });
     super.initState();
   }
-    @override
+
+  @override
   void dispose() {
-    timer.cancel();
     super.dispose();
   }
 
@@ -36,18 +37,16 @@ class _WelcomeState extends State<Welcome> {
     return Scaffold(
       body: AnimatedContainer(
         duration: const Duration(seconds: 5),
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
             image: DecorationImage(
                 image: AssetImage(
-                  "asset/images/bg.png",
+                  AppImageManger.pathImagebg,
                 ),
                 fit: BoxFit.cover)),
         child: Center(
           child: Text(
             "Welcome",
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: MediaQuery.of(context).size.height * 0.05),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 0.4.dp),
           ),
         ),
       ),

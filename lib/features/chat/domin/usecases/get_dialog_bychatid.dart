@@ -7,8 +7,8 @@ import '../repository/chat_repositry.dart';
 class GetDialogByChatIdUsecase {
   final ChatRepditry chatRepditry;
 
-  GetDialogByChatIdUsecase(this.chatRepditry);
-  Future<Either<ErrorType, GetDialogByChatIdModel>> call(String tonken,String id) async {
-    return await chatRepditry.getdialogbychat(tonken,id);
+  GetDialogByChatIdUsecase({required this.chatRepditry});
+  Future<Either<ErrorType, GetDialogByChatIdModel>> call(String id) async {
+    return await chatRepditry.getdialogbychat(id);
   }
 }
